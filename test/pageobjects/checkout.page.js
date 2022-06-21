@@ -18,7 +18,7 @@ class CheckoutPage {
     get sidebarOptionThree() { return $('#logout_sidebar_link') }
     get sidebarOptionFour() { return $('#reset_sidebar_link') }
     get logoHead() { return $('.app_logo') }
-    get errorMessage() { return $('.error-message-container.error') }
+    get errorMessage() { return $('.error-message-container') }
 
     async continue(firstName, lastName, zip) {
         await this.firstNameFS.setValue(firstName);

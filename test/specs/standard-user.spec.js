@@ -42,6 +42,9 @@ describe('Login with standard_user, select items from inventory, proceed to cart
     it('The images of the products should display correctly', async () => {
         await expect(InventoryPage.productsImages).toBeDisplayed();
     })
+    it('The title of the section PRODUCTS should display correctly', async () => {
+        await expect(InventoryPage.productsTitle).toBeDisplayed();
+    })
     it('Buttons to add the products to cart should display correctly', async () => {
         await expect(InventoryPage.btnsAddToCart).toBeDisplayed();
     })

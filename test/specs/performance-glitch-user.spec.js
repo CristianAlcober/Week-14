@@ -13,25 +13,25 @@ describe('Login with performance_glitch_user, wait to select items from inventor
         await LoginPage.login('performance_glitch_user', 'secret_sauce');
     })
     it('Cart icon should display correctly', async () => {
-        await expect(InventoryPage.cartIcon).waitForDisplayed({ timeout: 7000 });
+        await expect(InventoryPage.cartIcon).toBeDisplayed();
     })
     it('Cart icon should work correctly', async () => {
-        await expect(InventoryPage.cartIcon).waitForClickable({ timeout: 7000 });
+        await expect(InventoryPage.cartIcon).toBeClickable();
     })
     it('The names of the products should display correctly', async () => {
-        await expect(InventoryPage.productsNames).waitForDisplayed({ timeout: 7000 });
+        await expect(InventoryPage.productsNames).toBeDisplayed();
     })
     it('The prices of the products should display correctly', async () => {
-        await expect(InventoryPage.productPrices).waitForDisplayed({ timeout: 7000 });
+        await expect(InventoryPage.productPrices).toBeDisplayed();
     })
     it('The descriptions of the products should display correctly', async () => {
-        await expect(InventoryPage.productDescription).waitForDisplayed({ timeout: 7000 });
+        await expect(InventoryPage.productDescription).toBeDisplayed();
     })
     it('The images of the products should display correctly', async () => {
-        await expect(InventoryPage.productsImages).waitForDisplayed({ timeout: 7000 });
+        await expect(InventoryPage.productsImages).toBeDisplayed();
     })
     it('Buttons to add the products to cart should display correctly', async () => {
-        await expect(InventoryPage.btnsAddToCart).waitForDisplayed({ timeout: 7000 });
+        await expect(InventoryPage.btnsAddToCart).toBeDisplayed();
     })
     it('The names of the products should work correctly', async () => {
         await expect(InventoryPage.productOneName).toBeClickable();
@@ -57,10 +57,10 @@ describe('Login with performance_glitch_user, wait to select items from inventor
         await InventoryPage.cartIcon.click();
     })
     it('The Continue Shopping button should display correctly', async () => {
-        await expect(CartPage.btnContinueShop).waitForDisplayed({ timeout: 7000 });
+        await expect(CartPage.btnContinueShop).toBeDisplayed();
     })
     it('The Continue Shopping button should work correctly', async () => {
-        await expect(CartPage.btnContinueShop).waitForClickable({ timeout: 7000 });
+        await expect(CartPage.btnContinueShop).toBeClickable();
     })
     it('The Checkout button should display correctly', async () => {
         await expect(CartPage.btnCheckout).toBeDisplayed();
@@ -155,6 +155,6 @@ describe('Login with performance_glitch_user, wait to select items from inventor
         await expect(CompletedPurchasePage.btnBack).toBeDisplayed();
     })
     it('The back button should work correctly', async () => {
-        await expect(CompletedPurchasePage.btnBack).waitForClickable({ timeout: 7000 });
+        await expect(CompletedPurchasePage.btnBack).toBeClickable();
     })
 })

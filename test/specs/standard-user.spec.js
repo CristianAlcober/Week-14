@@ -12,6 +12,18 @@ describe('Login with standard_user, select items from inventory, proceed to cart
     it('Login successfully', async () => {
         await LoginPage.login('standard_user', 'secret_sauce');
     })
+    it('Burguer icon should display correctly', async () => {
+        await expect(InventoryPage.sideBarIcon).toBeDisplayed();
+    })
+    it('The sidebar options should display correctly', async () => {
+        await InventoryPage.sideBarIcon.click();
+        await expect(InventoryPage.sidebarCross).toBeDisplayed();
+        await expect(InventoryPage.sidebarOptionOne).toBeDisplayed();
+        await expect(InventoryPage.sidebarOptionTwo).toBeDisplayed();
+        await expect(InventoryPage.sidebarOptionThree).toBeDisplayed();
+        await expect(InventoryPage.sidebarOptionFour).toBeDisplayed();
+        await InventoryPage.sidebarCross.click();
+    })
     it('Cart icon should display correctly', async () => {
         await expect(InventoryPage.cartIcon).toBeDisplayed();
     })

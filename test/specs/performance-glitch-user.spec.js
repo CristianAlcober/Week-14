@@ -3,58 +3,35 @@ const CartPage = require('../pageobjects/cart.page');
 const InventoryPage = require('../pageobjects/inventory.page');
 const CheckoutPage = require('../pageobjects/checkout.page')
 const OverviewPage = require('../pageobjects/overview.page')
+const CompletedPurchasePage = require('../pageobjects/completed-purchase.page')
 
-describe('Login with problem_user, select items from inventory, proceed to cart and purchase but checkout wrong', () => {
+describe('Login with performance_glitch_user, wait to select items from inventory, proceed to cart and purchase', () => {
     beforeAll('open browser', () => {
         browser.url('https://www.saucedemo.com/');
     })
-    it('Robot image should display correctly', async () => {
-        await expect(LoginPage.botImg).toBeDisplayed();
-    })
-    it('Logo should display correctly', async () => {
-        await expect(LoginPage.logoHead).toBeDisplayed();
-    })
-    it('Username input should display correctly', async () => {
-        await expect(LoginPage.inputUsername).toBeDisplayed();
-    })
-    it('Password input should display correctly', async () => {
-        await expect(LoginPage.inputPassword).toBeDisplayed();
-    })
-    it('Login button should display correctly', async () => {
-        await expect(LoginPage.btnLogin).toBeDisplayed();
-    })
-    it('Username input should be clickable', async () => {
-        await expect(LoginPage.inputUsername).toBeClickable();
-    })
-    it('Password input should be clickable', async () => {
-        await expect(LoginPage.inputPassword).toBeClickable();
-    })
-    it('Login button should be clickable', async () => {
-        await expect(LoginPage.btnLogin).toBeClickable();
-    })
     it('Login successfully', async () => {
-        await LoginPage.login('problem_user', 'secret_sauce');
+        await LoginPage.login('performance_glitch_user', 'secret_sauce');
     })
     it('Cart icon should display correctly', async () => {
-        await expect(InventoryPage.cartIcon).toBeDisplayed();
+        await expect(InventoryPage.cartIcon).waitForDisplayed({ timeout: 7000 });
     })
     it('Cart icon should work correctly', async () => {
-        await expect(InventoryPage.cartIcon).toBeClickable();
+        await expect(InventoryPage.cartIcon).waitForClickable({ timeout: 7000 });
     })
     it('The names of the products should display correctly', async () => {
-        await expect(InventoryPage.productsNames).toBeDisplayed();
+        await expect(InventoryPage.productsNames).waitForDisplayed({ timeout: 7000 });
     })
     it('The prices of the products should display correctly', async () => {
-        await expect(InventoryPage.productPrices).toBeDisplayed();
+        await expect(InventoryPage.productPrices).waitForDisplayed({ timeout: 7000 });
     })
     it('The descriptions of the products should display correctly', async () => {
-        await expect(InventoryPage.productDescription).toBeDisplayed();
+        await expect(InventoryPage.productDescription).waitForDisplayed({ timeout: 7000 });
     })
     it('The images of the products should display correctly', async () => {
-        await expect(InventoryPage.productsImages).toBeDisplayed();
+        await expect(InventoryPage.productsImages).waitForDisplayed({ timeout: 7000 });
     })
     it('Buttons to add the products to cart should display correctly', async () => {
-        await expect(InventoryPage.btnsAddToCart).toBeDisplayed();
+        await expect(InventoryPage.btnsAddToCart).waitForDisplayed({ timeout: 7000 });
     })
     it('The names of the products should work correctly', async () => {
         await expect(InventoryPage.productOneName).toBeClickable();
@@ -80,10 +57,10 @@ describe('Login with problem_user, select items from inventory, proceed to cart 
         await InventoryPage.cartIcon.click();
     })
     it('The Continue Shopping button should display correctly', async () => {
-        await expect(CartPage.btnContinueShop).toBeDisplayed();
+        await expect(CartPage.btnContinueShop).waitForDisplayed({ timeout: 7000 });
     })
     it('The Continue Shopping button should work correctly', async () => {
-        await expect(CartPage.btnContinueShop).toBeClickable();
+        await expect(CartPage.btnContinueShop).waitForClickable({ timeout: 7000 });
     })
     it('The Checkout button should display correctly', async () => {
         await expect(CartPage.btnCheckout).toBeDisplayed();
@@ -104,7 +81,7 @@ describe('Login with problem_user, select items from inventory, proceed to cart 
         await expect(CheckoutPage.lastNameFS).toBeDisplayed();
         await expect(CheckoutPage.zipFS).toBeDisplayed();
     })
-    it('The fieldsets should be able to be clicked', async () => {
+    it('The fieldsets should work correctly', async () => {
         await expect(CheckoutPage.firstNameFS).toBeClickable();
         await expect(CheckoutPage.lastNameFS).toBeClickable();
         await expect(CheckoutPage.zipFS).toBeClickable();
@@ -121,15 +98,63 @@ describe('Login with problem_user, select items from inventory, proceed to cart 
     it('The Cancel button should display correctly', async () => {
         await expect(CheckoutPage.btnCancel).toBeClickable();
     })
-    /* it('The fieldsets should NOT get filled correctly and there should be an error', async () => {
-        CheckoutPage.continue('Problem', 'User', 2000);
-        await expect(CheckoutPage.errorMessage).toHaveText('Error: Last Name is required')
-        await expect(CheckoutPage.lastNameFS).toHaveAttribute('value', undefined)
+    it('The fieldsets should get filled correctly and continue with the purchase', async () => {
+        CheckoutPage.continue('Sandard', 'User', 2000);
+    })
+    /* it('The names of the products should display correctly', async () => {
+        await expect(OverviewPage.productsNames).toBeDisplayed();
+    })
+    it('The prices of the products should display correctly', async () => {
+        await expect(OverviewPage.productPrices).toBeDisplayed();
+    })
+    it('The descriptions of the products should display correctly', async () => {
+        await expect(OverviewPage.productDescription).toBeDisplayed();
     }) */
-    // Should have the fieldset 'Last Name' empty because of a bug, but it does not seem to detect it
     it('Social media icons should display correctly', async () => {
         await expect(OverviewPage.twitterIcon).toBeDisplayed();
         await expect(OverviewPage.facebookIcon).toBeDisplayed();
         await expect(OverviewPage.linkedInIcon).toBeDisplayed();
+    })
+    it('The quantity header text should display correctly', async () => {
+        await expect(OverviewPage.qtyText).toBeDisplayed();
+    })
+    it('The description header text should display correctly', async () => {
+        await expect(OverviewPage.descText).toBeDisplayed();
+    })
+    it('The copyright text should display correctly', async () => {
+        await expect(OverviewPage.copyrightText).toBeDisplayed();
+    })
+    it('The Finish button should display correctly', async () => {
+        await expect(OverviewPage.btnFinish).toBeDisplayed();
+    })
+    it('The Finish button should work correctly', async () => {
+        await expect(OverviewPage.btnFinish).toBeClickable();
+    })
+    it('The Cancel button should display correctly', async () => {
+        await expect(OverviewPage.btnCancel).toBeDisplayed();
+    })
+    it('The Cancel button should display correctly', async () => {
+        await expect(OverviewPage.btnCancel).toBeClickable();
+    })
+    it('The summary info should display correctly', async () => {
+        await expect(OverviewPage.summaryInformation).toBeDisplayed();
+        await expect(OverviewPage.summaryValue).toBeDisplayed();
+        await expect(OverviewPage.subTotalValue).toBeDisplayed();
+        await expect(OverviewPage.taxesValue).toBeDisplayed();
+        await expect(OverviewPage.totalValue).toBeDisplayed();
+    })
+    it('The finish button should be clicked and the process should finish', async () => {
+        await OverviewPage.btnFinish.click();
+    })
+    it('The screen should display the correct message and image', async () => {
+        await expect(CompletedPurchasePage.thanksMessage).toBeDisplayed();
+        await expect(CompletedPurchasePage.deployInfo).toBeDisplayed();
+        await expect(CompletedPurchasePage.ponyExpressImage).toBeDisplayed();
+    })
+    it('The back button should be displayed', async () => {
+        await expect(CompletedPurchasePage.btnBack).toBeDisplayed();
+    })
+    it('The back button should work correctly', async () => {
+        await expect(CompletedPurchasePage.btnBack).waitForClickable({ timeout: 7000 });
     })
 })
